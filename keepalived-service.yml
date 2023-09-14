@@ -1,0 +1,47 @@
+---
+version: '3.9'
+
+networks:
+  outside:
+    external:
+      name: "host"
+
+services:
+  master:
+    image: rootshellcoder/swarm-keepalived:latest
+    environment:
+      KEEPALIVED_UNICAST_SRC_IP: "172.16.5.4"
+      KEEPALIVED_UNICAST_PEER: "172.16.5.5"
+      KEEPALIVED_VIRTUAL_IPADDRESS: 192.168.100.254
+      KEEPALIVED_PRIORITY: 200
+      KEEPALIVED_INTERFACE: "eth0"
+    networks:
+      - outside
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.keepalived_master == true
+  backup:
+    image: rootshellcoder/swarm-keepalived:latest
+    environment:
+      KEEPALIVED_UNICAST_SRC_IP: "172.16.5.5"
+      KEEPALIVED_UNICAST_PEER: "172.16.5.4"
+      KEEPALIVED_VIRTUAL_IPADDRESS: 192.168.100.254
+      KEEPALIVED_PRIORITY: 100
+      KEEPALIVED_INTERFACE: "eth0"
+    networks:
+      - outside
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.keepalived_backup == true
