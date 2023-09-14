@@ -2,7 +2,10 @@
 
 docker
 
-`echo "modprobe ip_vs" >> /etc/modules`
+```bash
+echo "modprobe ip_vs" >> /etc/modules
+modprobe ip_vs
+```
 
 ```bash
 docker run -d --restart=always \
@@ -17,3 +20,15 @@ docker run -d --restart=always \
 ```
 
 [docker-swarm](./keepalived-service.yml)
+
+## Variables
+
+| variable                     |  default   | required |
+| ---------------------------- | :--------: | :------: |
+| KEEPALIVED_INTERFACE         |   `eth0`   |    X     |
+| KEEPALIVED_VIRTUAL_ROUTER_ID |    `51`    |    X     |
+| KEEPALIVED_PRIORITY          |   `100`    |    X     |
+| KEEPALIVED_AUTH_PASS         | `ETlE2RQr` |    X     |
+| KEEPALIVED_UNICAST_SRC_IP    |     X      |    Y     |
+| KEEPALIVED_UNICAST_PEER      |     X      |    Y     |
+| KEEPALIVED_VIRTUAL_IPADDRESS |     X      |    Y     |
