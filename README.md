@@ -112,8 +112,6 @@ docker run -d --restart=always \
   rootshellcoder/swarm-keepalived:latest
 ```
 
-## docker swarm see [keepalived-service.yml](./keepalived-service.yml)
-
 ## Variables
 
 | variable                     |  default   | required |
@@ -125,3 +123,14 @@ docker run -d --restart=always \
 | KEEPALIVED_UNICAST_SRC_IP    |     X      |    Y     |
 | KEEPALIVED_UNICAST_PEER      |     X      |    Y     |
 | KEEPALIVED_VIRTUAL_IPADDRESS |     X      |    Y     |
+
+## docker swarm see [keepalived-service.yml](./keepalived-service.yml)
+
+### deploy to swarm cluster
+
+* `wget https://raw.githubusercontent.com/RootShell-coder/swarm-keepalived/master/keepalived-service.yml`
+* edit variables keepalived-service.yml
+* `<label>` add labels to cluster manager nodes: `keepalived_master=tue`, `keepalived_backup0=true`, `keepalived_backup1=true`
+* `<node>` see cluster nodes `docker node ls`
+* `docker node update --label-add <label> <node>`
+* `docker stack deploy -c keepalived-service.yml keepalived`
