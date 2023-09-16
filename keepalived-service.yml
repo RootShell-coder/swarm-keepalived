@@ -11,9 +11,9 @@ services:
     image: rootshellcoder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.4"
-      KEEPALIVED_UNICAST_PEER: "172.16.5.5"
-      KEEPALIVED_VIRTUAL_IPADDRESS: 192.168.100.254
-      KEEPALIVED_PRIORITY: 200
+      KEEPALIVED_UNICAST_PEER: "172.16.5.5, 172.16.5.6"
+      KEEPALIVED_VIRTUAL_IPADDRESS: "192.168.100.254, 192.168.10.254"
+      KEEPALIVED_PRIORITY: "200"
       KEEPALIVED_INTERFACE: "eth0"
     networks:
       - outside
@@ -26,13 +26,13 @@ services:
         constraints:
           - node.role == manager
           - node.labels.keepalived_master == true
-  backup:
+  backup0:
     image: rootshellcoder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.5"
-      KEEPALIVED_UNICAST_PEER: "172.16.5.4"
-      KEEPALIVED_VIRTUAL_IPADDRESS: 192.168.100.254
-      KEEPALIVED_PRIORITY: 100
+      KEEPALIVED_UNICAST_PEER: "172.16.5.4, 172.16.5.6"
+      KEEPALIVED_VIRTUAL_IPADDRESS: "192.168.100.254, 192.168.10.254"
+      KEEPALIVED_PRIORITY: "100"
       KEEPALIVED_INTERFACE: "eth0"
     networks:
       - outside
@@ -44,4 +44,23 @@ services:
       placement:
         constraints:
           - node.role == manager
-          - node.labels.keepalived_backup == true
+          - node.labels.keepalived_backup0 == true
+  backup1:
+    image: rootshellcoder/swarm-keepalived:latest
+    environment:
+      KEEPALIVED_UNICAST_SRC_IP: "172.16.5.6"
+      KEEPALIVED_UNICAST_PEER: "172.16.5.4, 172.16.5.5"
+      KEEPALIVED_VIRTUAL_IPADDRESS: "192.168.100.254"
+      KEEPALIVED_PRIORITY: "50"
+      KEEPALIVED_INTERFACE: "enp3s0"
+    networks:
+      - outside
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.keepalived_backup1 == true
