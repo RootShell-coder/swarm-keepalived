@@ -1,6 +1,8 @@
 # swarm keepalived
 
-[Keepalived for Linux - Version 2.2.8 - Release Notes - May 31, 2023 - MD5SUM:={8c26f75a8767e5341d82696e1e717115}](https://www.keepalived.org/software/keepalived-2.2.8.tar.gz)
+[![Docker](https://github.com/RootShell-coder/swarm-keepalived/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/RootShell-coder/swarm-keepalived/actions/workflows/docker-publish.yml)
+
+[Keepalived for Linux - Version 2.2.8 - Release Notes - May 31, 2023](https://www.keepalived.org/software/keepalived-2.2.8.tar.gz)
 
 ## keepalived v 2.2.8 configure flags
 
