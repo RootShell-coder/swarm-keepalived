@@ -92,6 +92,7 @@ RUN set eux; \
   net-snmp-dev \
   openssl \
   pcre2; \
+  apk --no-cache del; \
   addgroup -S keepalived; \
   adduser -S keepalived -G keepalived -h /src/keepalived -s /bin/bash; \
   addgroup keepalived sudo; \
@@ -100,5 +101,6 @@ RUN set eux; \
   chown -R keepalived:keepalived /etc/keepalived/ /run;
 COPY --from=build /usr/sbin/ /usr/sbin/
 USER keepalived
+VOLUME /etc/keepalived/
 ENTRYPOINT ["entrypoint"]
 CMD ["sudo", "/usr/sbin/keepalived", "--dont-fork", "--log-console", "--use-file", "/etc/keepalived/keepalived.conf"]
