@@ -124,7 +124,9 @@ docker run -d --restart=always \
 | KEEPALIVED_UNICAST_PEER      |     X      |    Y     |
 | KEEPALIVED_VIRTUAL_IPADDRESS |     X      |    Y     |
 
-## docker swarm see [keepalived-service.yml](./keepalived-service.yml)
+## Example
+
+_docker swarm service see [keepalived-service.yml](./example/keepalived-service.yml)_
 
 ### deploy to swarm cluster
 
@@ -134,3 +136,5 @@ docker run -d --restart=always \
 * `<node>` see cluster nodes `docker node ls`
 * `docker node update --label-add <label> <node>`
 * `docker stack deploy -c keepalived-service.yml keepalived`
+
+_docker service see [docker-compose.yml](./example/docker-compose.yml)_

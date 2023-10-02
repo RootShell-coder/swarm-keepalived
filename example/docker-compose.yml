@@ -1,0 +1,18 @@
+---
+version: '3.9'
+
+services:
+  master:
+    image: rootshellcoder/swarm-keepalived:latest
+    environment:
+      KEEPALIVED_UNICAST_SRC_IP: "172.16.5.4"
+      KEEPALIVED_UNICAST_PEER: "172.16.5.5, 172.16.5.6"
+      KEEPALIVED_VIRTUAL_IPADDRESS: "192.168.100.254, 192.168.10.254"
+      KEEPALIVED_PRIORITY: "200"
+      KEEPALIVED_INTERFACE: "eth0"
+    network_mode: host
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
