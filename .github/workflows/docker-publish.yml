@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: swarm-keepalived:latest
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -39,4 +39,4 @@ jobs:
           context: docker
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: latest
