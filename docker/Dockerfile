@@ -1,7 +1,7 @@
 FROM alpine:latest AS build
-
+ENV VERSION=2.3.1
 WORKDIR /tmp
-ADD https://keepalived.org/software/keepalived-2.2.8.tar.gz .
+ADD https://keepalived.org/software/keepalived-$VERSION.tar.gz .
 
 RUN set eux; \
   addgroup -S keepalived_script; \
@@ -32,8 +32,8 @@ RUN set eux; \
   pcre2-dev \
   autoconf \
   automake; \
-  tar xvzf keepalived-2.2.8.tar.gz; \
-  cd /tmp/keepalived-2.2.8/; \
+  tar xvzf keepalived-$VERSION.tar.gz; \
+  cd /tmp/keepalived-$VERSION/; \
   ./autogen.sh; \
   ./configure \
   --disable-dynamic-linking \
@@ -58,7 +58,7 @@ RUN set eux; \
   make install; \
   strip /usr/sbin/keepalived; \
   cd -; \
-  rm -rf /tmp/keepalived-2.2.8; \
+  rm -rf /tmp/keepalived-$VERSION; \
   apk --no-cache del \
   binutils \
   file-dev \
@@ -104,3 +104,4 @@ USER keepalived
 VOLUME /etc/keepalived/
 ENTRYPOINT ["entrypoint"]
 CMD ["sudo", "/usr/sbin/keepalived", "--dont-fork", "--log-console", "--use-file", "/etc/keepalived/keepalived.conf"]
+

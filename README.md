@@ -2,9 +2,11 @@
 
 [![Docker](https://github.com/RootShell-coder/swarm-keepalived/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/RootShell-coder/swarm-keepalived/actions/workflows/docker-publish.yml)
 
-[Keepalived for Linux - Version 2.2.8 - Release Notes - May 31, 2023](https://www.keepalived.org/software/keepalived-2.2.8.tar.gz)
+Update VERSION 2.3.1
 
-## keepalived v 2.2.8 configure flags
+[Keepalived for Linux ](https://www.keepalived.org/download.html)
+
+## keepalived configure flags
 
 * disable-dynamic-linking
 * prefix=/usr
