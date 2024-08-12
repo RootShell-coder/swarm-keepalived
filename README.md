@@ -43,7 +43,7 @@ docker run -d --restart=always \
   -e KEEPALIVED_VIRTUAL_IPADDRESS="192.168.100.254, 192.168.10.254" \
   -e KEEPALIVED_PRIORITY="200" \
   -e KEEPALIVED_INTERFACE="eth0" \
-  rootshellcoder/swarm-keepalived:latest
+  ghcr.io/rootshell-coder/swarm-keepalived:latest
 ```
 
 docker master log (codespace)
@@ -94,7 +94,7 @@ docker run -d --restart=always \
   -e KEEPALIVED_VIRTUAL_IPADDRESS="192.168.100.254, 192.168.10.254" \
   -e KEEPALIVED_PRIORITY="100" \
   -e KEEPALIVED_INTERFACE="eth0" \
-  rootshellcoder/swarm-keepalived:latest
+  ghcr.io/rootshell-coder/swarm-keepalived:latest
 ```
 
 ### backup 1
@@ -111,7 +111,7 @@ docker run -d --restart=always \
   -e KEEPALIVED_VIRTUAL_IPADDRESS="192.168.100.254" \
   -e KEEPALIVED_PRIORITY="50" \
   -e KEEPALIVED_INTERFACE="enp3s0" \
-  rootshellcoder/swarm-keepalived:latest
+  ghcr.io/rootshell-coder/swarm-keepalived:latest
 ```
 
 ## Variables

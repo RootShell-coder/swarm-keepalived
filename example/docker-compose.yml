@@ -3,7 +3,7 @@ version: '3.9'
 
 services:
   master:
-    image: rootshellcoder/swarm-keepalived:latest
+    image: ghcr.io/rootshell-coder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.4"
       KEEPALIVED_UNICAST_PEER: "172.16.5.5, 172.16.5.6"

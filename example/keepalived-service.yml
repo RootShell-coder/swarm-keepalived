@@ -8,7 +8,7 @@ networks:
 
 services:
   master:
-    image: rootshellcoder/swarm-keepalived:latest
+    image: ghcr.io/rootshell-coder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.4"
       KEEPALIVED_UNICAST_PEER: "172.16.5.5, 172.16.5.6"
@@ -27,7 +27,7 @@ services:
           - node.role == manager
           - node.labels.keepalived_master == true
   backup0:
-    image: rootshellcoder/swarm-keepalived:latest
+    image: ghcr.io/rootshell-coder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.5"
       KEEPALIVED_UNICAST_PEER: "172.16.5.4, 172.16.5.6"
@@ -46,7 +46,7 @@ services:
           - node.role == manager
           - node.labels.keepalived_backup0 == true
   backup1:
-    image: rootshellcoder/swarm-keepalived:latest
+    image: ghcr.io/rootshell-coder/swarm-keepalived:latest
     environment:
       KEEPALIVED_UNICAST_SRC_IP: "172.16.5.6"
       KEEPALIVED_UNICAST_PEER: "172.16.5.4, 172.16.5.5"

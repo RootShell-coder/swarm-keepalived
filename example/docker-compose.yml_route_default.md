@@ -49,7 +49,7 @@ docker-compose.yml
 ---
 services:
   master:
-    image: keepalived:latest
+    image: ghcr.io/rootshell-coder/swarm-keepalived:latest
     environment:
       DAFAULT_GATEWAY: "108.177.16.1"
       KEEPALIVED_UNICAST_SRC_IP: "192.168.10.2"
